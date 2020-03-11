@@ -1,9 +1,9 @@
 import React from "react";
-
-// const PLACEHOLDER_IMG = "placeholder.jpg";
+import Store from "./Store";
 
 const Game = ({ game }) => {
-  // const image = game.background_image === "" ? PLACEHOLDER_IMG : game.background_image;
+
+  const stores = game.stores;
   return (
     <div className="game">
       <h2>{game.name}</h2>
@@ -12,7 +12,15 @@ const Game = ({ game }) => {
         alt={`The game named: ${game.name}`}
         src={game.background_image}
       />
-      <p>({game.stores})</p>
+      <div>
+        {!stores ? (
+          <p>No stores are currently selling this game.</p>
+        ) : (
+          stores.map((store, index) => (
+            <Store key={`${index}-${store.store.name}`} store={store.store} />
+          ))
+        )}
+      </div>
     </div>
   );
 };

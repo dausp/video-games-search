@@ -2,7 +2,7 @@ import React, { useReducer, useEffect } from "react";
 import "../App.css";
 import Header from "./Header";
 import Game from "./Game";
-import GameSearch from "./Search";
+import GameSearch from "./GameSearch";
 
 const RAWG_API_URL = "https://api.rawg.io/api/games?search=man";
 
@@ -40,32 +40,18 @@ const reducer = (state, action) => {
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-    useEffect(() => {
-      fetch(RAWG_API_URL, {
-        method: 'GET',
-        headers : {
-          'Accept'       : 'application/json',
-          'Content-Type' : 'application/json',
-          'User-Agent': navigator.userAgent
-        }
-      })
-      .then(response => response.json())
-      .then(jsonResponse => {
-        if (jsonResponse.Response === "True") {
-          console.log("response was TRUE");
-          dispatch({
-              type: "SEARCH_GAMES_SUCCESS",
-              payload: jsonResponse.Search
-          });
-        } else {
-          console.log("response was FALSE");
-          dispatch({
-              type: "SEARCH_GAMES_FAILURE",
-              error: jsonResponse.Error
-          });
-        }
+  useEffect(() => {
+
+    fetch(RAWG_API_URL)
+        .then(response => response.json())
+        .then(jsonResponse => {
+        console.dir(jsonResponse);
+        dispatch({
+            type: "SEARCH_GAMES_SUCCESS",
+            payload: jsonResponse.results
       });
-  	}, []);
+    });
+  }, []);
 
     const search = searchValue => {
     	dispatch({
@@ -75,22 +61,15 @@ const App = () => {
       fetch(`https://api.rawg.io/api/games?search=${searchValue}`)
       	.then(response => response.json())
       	.then(jsonResponse => {
-        	if (jsonResponse.Response === "True") {
           	dispatch({
                 type: "SEARCH_GAMES_SUCCESS",
-                payload: jsonResponse.Search
+                payload: jsonResponse.results
           	});
-        	} else {
-          	dispatch({
-                type: "SEARCH_GAMES_FAILURE",
-                error: jsonResponse.Error
-          	});
-          }
       	});
 	  };
 
     const { games, errorMessage, loading } = state;
-    console.dir(games)
+
     return (
     <div className="App">
       <Header text="Cheap Games" />
@@ -105,7 +84,7 @@ const App = () => {
           </div>
         ) : (
           games.map((game, index) => (
-            <Game key={`${index}-${game.id}`} game={game} />
+            <Game key={`${index}-${game.name}`} game={game} />
           ))
         )}
       </div>
