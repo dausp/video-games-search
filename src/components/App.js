@@ -4,7 +4,7 @@ import Header from "./Header";
 import Game from "./Game";
 import GameSearch from "./GameSearch";
 
-const RAWG_API_URL = "https://api.rawg.io/api/games?search=man";
+const RAWG_API_URL = "https://api.rawg.io/api/games";
 
 const initialState = {
   loading: true,

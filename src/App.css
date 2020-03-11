@@ -1,8 +1,16 @@
+html, body {
+  font-size: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
 }
 
-.App-header {
+.header {
   background-color: #004b46;
   height: 70px;
   display: flex;
@@ -24,20 +32,31 @@
   font-size: large;
 }
 
-/* new css for game component */
-
-* {
-  box-sizing: border-box;
-}
-
 .games {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-.App-header h2 {
+.header h1 {
   margin: 0;
+  font-size: 2.5rem;
+}
+
+.alpha {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.header p {
+  font-size: 0.825rem;
+  margin: 0;
+  padding: 0.5rem;
+  background: red;
+  color: white;
 }
 
 .add-games {
