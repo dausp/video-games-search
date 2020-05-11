@@ -4,6 +4,7 @@ import Store from "./Store";
 const Game = ({ game }) => {
 
   const stores = game.stores;
+  console.log({game});
   return (
     <div className="game">
       <h2>{game.name}</h2>

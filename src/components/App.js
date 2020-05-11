@@ -43,12 +43,12 @@ const App = () => {
   useEffect(() => {
 
     fetch(RAWG_API_URL)
-        .then(response => response.json())
-        .then(jsonResponse => {
-        console.dir(jsonResponse);
-        dispatch({
-            type: "SEARCH_GAMES_SUCCESS",
-            payload: jsonResponse.results
+      .then(response => response.json())
+      .then(jsonResponse => {
+      // console.dir(jsonResponse);
+      dispatch({
+        type: "SEARCH_GAMES_SUCCESS",
+        payload: jsonResponse.results
       });
     });
   }, []);
@@ -59,13 +59,13 @@ const App = () => {
       });
 
       fetch(`https://api.rawg.io/api/games?search=${searchValue}`)
-      	.then(response => response.json())
-      	.then(jsonResponse => {
-          	dispatch({
-                type: "SEARCH_GAMES_SUCCESS",
-                payload: jsonResponse.results
-          	});
-      	});
+      .then(response => response.json())
+      .then(jsonResponse => {
+        dispatch({
+          type: "SEARCH_GAMES_SUCCESS",
+          payload: jsonResponse.results
+        });
+      });
 	  };
 
     const { games, errorMessage, loading } = state;
