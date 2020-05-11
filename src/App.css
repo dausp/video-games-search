@@ -23,6 +23,16 @@ html, body {
   cursor: pointer;
 }
 
+.footer {
+  color: #fff;
+  background-color: #004b46;
+  padding: 0.2rem 0;
+}
+
+.footer a {
+  color: #fff;
+}
+
 .spinner {
   height: 80px;
   margin: auto;

@@ -4,7 +4,7 @@ import Store from "./Store";
 const Game = ({ game }) => {
 
   const stores = game.stores;
-  console.log({game});
+
   return (
     <div className="game">
       <h2>{game.name}</h2>
@@ -18,7 +18,9 @@ const Game = ({ game }) => {
           <p>No stores are currently selling this game.</p>
         ) : (
           stores.map((store, index) => (
-            <Store key={`${index}-${store.store.name}`} store={store.store} />
+            <Store key={`${index}-${store.store.name}`}
+                  name={store.store.name}
+                  url={store.url_en} />
           ))
         )}
       </div>

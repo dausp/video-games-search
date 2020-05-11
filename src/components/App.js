@@ -1,6 +1,7 @@
 import React, { useReducer, useEffect } from "react";
 import "../App.css";
 import Header from "./Header";
+import Footer from "./Footer";
 import Game from "./Game";
 import GameSearch from "./GameSearch";
 
@@ -45,7 +46,6 @@ const App = () => {
     fetch(RAWG_API_URL)
       .then(response => response.json())
       .then(jsonResponse => {
-      // console.dir(jsonResponse);
       dispatch({
         type: "SEARCH_GAMES_SUCCESS",
         payload: jsonResponse.results
@@ -72,8 +72,8 @@ const App = () => {
 
     return (
     <div className="App">
-      <Header text="Cheap Games" />
-      <p className="App-intro">Just search for a game to find the cheapest way to buy it (powered by <a href="https://api.rawg.io/docs/" target="_blank" rel="noopener noreferrer">RAWG API</a>).</p>
+      <Header text="Games Search" />
+      <p className="App-intro">Find out where to buy your favorite games:</p>
       <GameSearch search={search} />
       <div className="games">
         {loading && !errorMessage ? (
@@ -88,6 +88,7 @@ const App = () => {
           ))
         )}
       </div>
+      <Footer />
     </div>
   );
 };

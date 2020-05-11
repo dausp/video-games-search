@@ -1,13 +1,15 @@
 import React from "react";
 
-const Store = ({ store }) => {
+const Store = ({ name, url }) => {
 
   // e.g. https://api.rawg.io/api/games/{game-name}/stores
   // return list of links for stores of where to buy the game
   return (
-    <h3 className="store">
-      {store.name}
-    </h3>
+    <p>
+      <a href={url} target="_blank" rel="noopener noreferrer">
+        {name}
+      </a>
+    </p>
   );
 };
 
