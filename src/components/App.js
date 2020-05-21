@@ -31,7 +31,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         loading: false,
-        errorMessage: action.error
+        errorMessage: "A matching game could not be found!"
       };
     default:
       return state;
@@ -77,7 +77,7 @@ const App = () => {
       <GameSearch search={search} />
       <div className="games">
         {loading && !errorMessage ? (
-          <p>loading... </p>
+          <p>loading...</p>
         ) : errorMessage ? (
           <div className="errorMessage">
             <p>Oops! {errorMessage}</p>
